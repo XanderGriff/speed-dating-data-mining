@@ -1,10 +1,6 @@
-CMPE 333 Project Report
+Speed Dating Data Mining Experiment
 
-By: Alexander Griff (10094348)
-
-## **Table of Contents:**
-
-[[TOC]]
+By: Alexander Griff
 
 ## **Section 1: Introduction:**
 
@@ -12,7 +8,7 @@ For this project, data mining principles and concepts will be applied to the pro
 
 ## **Section 2: Approach:**
 
-Based on course content and experience with course assignments, the Cross-Industry Standard Process for Data Mining (CRISP-DM) problem solving procedure has been adopted and adapted for this assignment. The main phases of the adapted CRISP-DM used for this project are as follows [1]:
+The Cross-Industry Standard Process for Data Mining (CRISP-DM) problem solving procedure has been adopted and adapted for this experiment. The main phases of the adapted CRISP-DM used for this project are as follows [1]:
 
 1. Background Research
 
