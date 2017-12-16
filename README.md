@@ -106,7 +106,7 @@ Thus, a more involved method would have to be adopted for establishing even the 
 
 Using this model, the initial dataset would be simplified based on the error messages given as the function fails due to dataset complications. For example, when the predict method was applied to the initial dataset, it provided an error message notifying that it could not take string values as attribute values. Thus, any column that had string values was removed. The next run complained about missing values, so missing values were imputed using each columns mean value without regard for appropriateness. When this new dataset was passed through the predict method, it succeeded in running, and provided the following confusion matrix with a predictive accuracy of approx. 84%: 
 
-![image alt text](image_1.png)
+![image alt text](assets/image_1.png)
 
 **Figure 3: Baseline Confusion Matrix with 84% Prediction Accuracy**
 
@@ -164,7 +164,7 @@ During research into defining the acceptable percent of missing data, an paper w
 
 At this point, however, the correlation of attributes to one another had to be considered. Because the followup attributes measure the same metric varied over time, it was hypothesized that they had relatively high correlations with one another and, combined with the fact that they were missing a majority of the time based on observation, they could be eliminated rather than imputed. To confirm this was the case, a multiple step process was necessary. First, although initial observation of the percent-missing values of the followup attributes seemed relatively high, this observation had to be confirmed with actual data. Thus, the average percent-missing value was calculated for any attribute with the suffix '_2' or '_3'. A sample of the output from this calculation can be found below in Figure 4. 
 
-![image alt text](image_2.png)
+![image alt text](assets/image_2.png)
 
 **Figure 4: Correlation Between Initial and Follow Up Attributes for attr1_1**
 
@@ -196,17 +196,17 @@ differences due to scoring inconsistencies. During testing of the algorithm, ano
 
 With adjustments made to the scoring system as detailed above, it was time to evaluate the changes to ensure that they had a net positive effect. The same methods of imputation and prediction for the naive model were applied to this newly preprocessed dataset. As seen below in Figure 5, the prediction accuracy improved by almost 2%, reflecting the improvements made to the dataset. It was also noted that the generated predictive model had a much tougher time dealing with predicting matches than non-matches. It was hypothesized that it might therefore prove useful to explore the rows where matches occur and see if any conclusions can be drawn from clustering methods.
 
-![image alt text](image_3.png)
+![image alt text](assets/image_3.png)
 
 **Figure 5: Confusion Matrix with Predictive Accuracy for Updated Dataset**
 
 To further explore the relation of various attributes to matches, a number of methods were theorized to be useful based on the correlation values found using the find_correlations() method developed above. The first was to explore the correlations between matches and the six attributes used to score partner's attractiveness, sincerity, fun, etc.). Similarly, correlations would also be explored between matches and interests. Cursory explorations of the correlation between the score and interest attributes can be found below in Figures 6 and 7:
 
-![image alt text](image_4.png)
+![image alt text](assets/image_4.png)
 
 **Figure 6: Correlation between Partner Scores and Match Attribute**
 
-![image alt text](image_5.png)
+![image alt text](assets/image_5.png)
 
 **Figure 7: Correlation between Interest Rankings and Match Attribute**
 
@@ -214,19 +214,19 @@ In trying to understand correlations between various attributes, it was theorize
 
 First, however, it would be necessary to observe whether or not belonging to these groups actually had an impact on the correlation values. To do this, the parallel visualization from course material was employed, with color coded lines to indicate belonging to either a gender or racial group. These visualizations can be found below in Figures 8 through 11:
 
-![image alt text](image_6.png)
+![image alt text](assets/image_6.png)
 
 **Figure 8: Parallel Visualization of Partner Scored Attributes by Gender**
 
-![image alt text](image_7.png)
+![image alt text](assets/image_7.png)
 
 **Figure 9: Parallel Visualization of Interests by Gender**
 
-![image alt text](image_8.png)
+![image alt text](assets/image_8.png)
 
 **Figure 10: Parallel Visualization of Partner Scored Attributes by Race**
 
-![image alt text](image_9.png)
+![image alt text](assets/image_9.png)
 
 **Figure 11: Parallel Visualization of Interests by Race**
 
@@ -234,13 +234,13 @@ Based on the differences in shape and magnitude in Figures 8 through 11, it is p
 
 Generally speaking, the preferences of the six partner scored attributes followed the same trends in both gender and racial groups, although with slight variations in magnitude and direction. Interests, on the other hand, differed quite significantly between both gender and racial groups. From a gender perspective, the greatest differences of correlations were in the tv, tv_sports, theatre, and movies attributes and the greatest similarities were between music, shopping, and yoga. From a racial perspective, each group held slightly different values, with hiking being the attribute with the greatest variance. Based on these observations, imputation can be broken down and tailored to specifically clustered demographics. To confirm that this change in process led to a neutral or better outcome, prediction accuracy found using the predict method from the naive approach was compared with that of the base model. A confusion matrix generated from this method is shown below in Figure 12:
 
-![image alt text](image_10.png)
+![image alt text](assets/image_10.png)
 
 **Figure 11: Confusion Matrix for Further Improved Dataset**
 
 Clearly, the above improvements produced a marked increase in prediction accuracy, and can thus be considered successful. Some values, however, were still not imputed, as no mean could be calculated for the given cluster. Five attributes in particular, mn_sat, tuition, income, undergra and zipcode, all had above 10% and up to 64% missing values, while all other attributes were almost 99% or more complete. Thus, it was hypothesized that these five attributes would not be able to be imputed, and thus must be eliminated. To ensure that this did not negatively impact the model generation process, prediction accuracy was again calculated and compared to the base model. The generated confusion matrix generated is shown below in Figure 12:
 
-![image alt text](image_11.png)
+![image alt text](assets/image_11.png)
 
 **Figure 12: Confusion Matrix for Final Improved Dataset**
 
@@ -296,22 +296,22 @@ Overall, significant progress was made on all fronts. This project has provided 
 
 ## **Appendix A: KNIME Workflows**
 
-![image alt text](image_12.png)
+![image alt text](assets/image_12.png)
 
 **Figure 2: KNIME Preprocessing Workflow**
 
 To determine the most sensible method of discretization, the first textual attribute, ‘field’, was singled out as a test subject to determine scope. It was found that the range of the attribute was 259 discrete values, as shown in Figure 4, meaning it may be difficult to use dictionary replace binning, which is shown in Figure 5. As discussed in the report, it may be necessary to remove the attributes until some discretization algorithm is found to be more suitable. This process is shown below in Figure 6.
 
-![image alt text](image_13.png)
+![image alt text](assets/image_13.png)
 
 **Figure 3: Discretization Analysis Workflow**
 
-![image alt text](image_14.png)
+![image alt text](assets/image_14.png)
 
 **Figure 4: Discretization Analysis Table Output Sample**
 
-![image alt text](image_15.png)
+![image alt text](assets/image_15.png)
 
 **Figure 5: Dictionary Replace Discretization Inefficient Implementation Workflow**
 
-![image alt text](image_16.png)**Figure 6: Discretization Elimination Workflow **
+![image alt text](assets/image_16.png)**Figure 6: Discretization Elimination Workflow **
